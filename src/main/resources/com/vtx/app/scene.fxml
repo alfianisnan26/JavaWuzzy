@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="800.0" styleClass="view" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vtx.app.SceneController">
+   <Slider fx:id="slider_max_res" blockIncrement="5.0" layoutX="530.0" layoutY="81.0" max="0.0" minorTickCount="1" prefHeight="14.0" prefWidth="150.0" />
+    <Button fx:id="btn_base" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadBase" prefHeight="25.0" prefWidth="167.0" text="Load base file" />
+    <Button fx:id="btn_db" layoutX="14.0" layoutY="74.0" mnemonicParsing="false" onAction="#loadDatabase" prefHeight="25.0" prefWidth="167.0" text="Load database file" />
+    <Label fx:id="label_base" layoutX="194.0" layoutY="18.0" text="Nothing Selected" />
+    <Label fx:id="label_db" layoutX="194.0" layoutY="79.0" text="Nothing Selected" />
+    <TableView fx:id="tv_base" layoutX="14.0" layoutY="106.0" onKeyPressed="#clickItemKey" onMouseClicked="#clickItem" prefHeight="428.0" prefWidth="359.0">
+      <columns>
+          <TableColumn fx:id="tc_base" editable="false" prefWidth="256.0" text="Base" />
+         <TableColumn fx:id="tc_highScore" editable="false" prefWidth="102.0" text="High Score" />
+      </columns>
+    </TableView>
+    <TableView fx:id="tv_match" layoutX="380.0" layoutY="106.0" onKeyPressed="#clickedOnMathces" onMouseClicked="#clickedOnMathces" prefHeight="428.0" prefWidth="411.0">
+      <columns>
+          <TableColumn fx:id="tc_matches" prefWidth="291.0" text="Matches" />
+          <TableColumn fx:id="tc_score" editable="false" minWidth="0.0" prefWidth="119.0" text="Score" />
+      </columns>
+    </TableView>
+    <Button fx:id="btn_export" disable="true" layoutX="69.0" layoutY="546.0" mnemonicParsing="false" onAction="#selectExportFile" prefHeight="25.0" prefWidth="112.0" text="Select export file" />
+    <Label fx:id="label_export" disable="true" layoutX="194.0" layoutY="550.0" text="Nothing Selected" />
+    <Button fx:id="btn_from_base" disable="true" layoutX="14.0" layoutY="546.0" mnemonicParsing="false" onAction="#fromBase" prefHeight="25.0" prefWidth="45.0" text="Base" />
+    <Button fx:id="btn_to_export" disable="true" layoutX="707.0" layoutY="546.0" mnemonicParsing="false" onAction="#exportValue" prefHeight="86.0" prefWidth="84.0" text="Export" />
+    <Button fx:id="btn_import" disable="true" layoutX="107.0" layoutY="44.0" mnemonicParsing="false" onAction="#importBase" prefHeight="25.0" prefWidth="75.0" text="Import" />
+    <Text layoutX="382.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total base" wrappingWidth="84.0" />
+    <Text layoutX="530.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total database" wrappingWidth="84.0" />
+    <Text fx:id="text_total_base" layoutX="478.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": 0" wrappingWidth="45.0" />
+    <Text fx:id="text_total_database" layoutX="614.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": 0 in 0" />
+    <Button fx:id="btn_fuzzy" disable="true" layoutX="700.0" layoutY="73.0" mnemonicParsing="false" onAction="#fuzzier" prefHeight="25.0" prefWidth="84.0" text="Fuzzy This" />
+    <ProgressBar fx:id="progressBar" layoutX="14.0" layoutY="606.0" prefHeight="25.0" prefWidth="359.0" />
+   <CheckBox fx:id="check_score" disable="true" layoutX="459.0" layoutY="581.0" mnemonicParsing="false" onAction="#checkWithScore" text="with score" />
+   <ComboBox fx:id="cb_base" disable="true" layoutX="14.0" layoutY="44.0" prefHeight="25.0" prefWidth="84.0" promptText="Select column" />
+   <ComboBox fx:id="cb_export" disable="true" layoutX="550.0" layoutY="546.0" prefWidth="150.0" promptText="Select column" />
+   <ComboBox fx:id="cb_score" disable="true" layoutX="550.0" layoutY="577.0" prefWidth="150.0" promptText="Select column" />
+   <Button fx:id="btn_fuzzyAll" disable="true" layoutX="700.0" layoutY="15.0" mnemonicParsing="false" onAction="#fuzzierAll" prefHeight="54.0" prefWidth="84.0" text="Fuzzy All" />
+   <Slider fx:id="slider_min_score" blockIncrement="5.0" layoutX="530.0" layoutY="51.0" minorTickCount="1" prefHeight="14.0" prefWidth="150.0" value="50.0" />
+   <Text layoutX="382.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minimum Score" />
+   <Text fx:id="text_min_score" layoutX="478.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": 50" wrappingWidth="45.0" />
+   <Text layoutX="382.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maximum Result" />
+   <Text fx:id="text_max_res" layoutX="478.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": -" wrappingWidth="45.0" />
+   <Text fx:id="text_percentage" layoutX="72.0" layoutY="623.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please execute Fuzzy All" textAlignment="CENTER" wrappingWidth="220.83203125" />
+   <Button fx:id="btn_abort" cancelButton="true" disable="true" layoutX="380.0" layoutY="577.0" mnemonicParsing="false" onAction="#abortFuzzy" prefHeight="54.0" prefWidth="75.0" text="Abort" />
+   <Button fx:id="btn_null" disable="true" layoutX="382.0" layoutY="546.0" mnemonicParsing="false" onAction="#giveNull" prefHeight="25.0" prefWidth="150.0" text="Give null" />
+   <CheckBox fx:id="check_category" disable="true" layoutX="459.0" layoutY="612.0" mnemonicParsing="false" onAction="#checkWithCategory" prefHeight="17.0" prefWidth="84.0" text="with category" />
+   <ComboBox fx:id="cb_category" disable="true" layoutX="550.0" layoutY="608.0" prefWidth="150.0" promptText="Select column" />
+   <Text disable="true" fill="#8d8d8d" layoutX="18.0" layoutY="642.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JavaWuzzy 1.2 by vtx (alfianisnan26)" underline="true">
+      <font>
+         <Font name="System Italic" size="10.0" />
+      </font>
+   </Text>
+</Pane>
